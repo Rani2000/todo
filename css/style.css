@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    padding: 30px 20px;
+    background-color: #6BE3A2;
+}
+
+#add-task {
+    max-width: 900px;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    margin: 0px auto;
+}
+
+form {
+    display: flex;
+    gap: 20px;
+}
+
+#item, #update-item{
+    width: 100%;
+    outline: none;
+    border: 0.5px solid #324561;
+    padding: 10px;
+    color: #324561;
+    font-weight: 400;
+    font-size: 13px;
+}
+
+#update-item{
+    margin-top:20px;
+}
+
+::placeholder {
+    color: #324561;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+button {
+    background: #324561;
+    padding: 10px 40px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+#todo-task,
+#complete-task {
+    min-height: 180px;
+    margin-top: 30px;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+hr {
+    height: 0.5px;
+    border: 0;
+    background-color: #324561;
+    margin-top: 10px;
+}
+
+li {
+    width: 100%;
+    list-style: none;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #324561;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    transition: 0.3s;
+}
+
+p {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.8;
+}
+
+li p {
+    text-align: justify;
+}
+
+.icon {
+    display: flex;
+    gap: 13px;
+    margin-top: 4px;
+}
+
+.icon i:first-child {
+    font-size: 12px;
+    margin-top: 1px;
+}
+
+.icon i:last-child {
+    font-size: 15px;
+}
+
+i {
+    cursor: pointer;
+}
+
+.done {
+    background: #80808059;
+    color: #324561;
+}
+
+.done p {
+    text-decoration: line-through;
+}
+
+#delete-task {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    background-color: #6be3a2b5;
+    padding: 0px 20px;
+    display: none;
+}
+
+#update-task {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    background-color: #6be3a2b5;
+    padding: 0px 20px;
+    display: none;
+}
+
+#delete-task i,
+#update-task i {
+    display: block;
+    text-align: right;
+    margin-top: 20px;
+    color: #324561;
+}
+
+.box {
+    width: 100%;
+    max-width: 500px;
+    background-color: #fff;
+    padding: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btns {
+    margin-top: 25px;
+}
+
+.btns button:last-child {
+    margin-left: 15px;
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    background-color: #324561;
+    color: #fff;
+    transform: translateX(calc(100% + 30px));
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.25, 1.35);
+}
+
+.toast.show {
+    transform: translateX(0);
+} 
+
+.inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.progress {
+    position: absolute;
+    background-color: #324561ac;
+    width: 100%;
+    height: 2px;
+}
+
+.progress::before {
+    position: absolute;
+    content: " ";
+    background-color: #fff;
+    width: 100%;
+    height: 2px;
+}
+
+.progress.active::before {
+    animation: progress 2s linear forwards;
+}
+
+.toast i {
+    font-size: 13px;
+}
+
+@keyframes progress {
+    100% {
+        width: 0;
+    }
+}
