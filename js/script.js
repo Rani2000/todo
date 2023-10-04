@@ -57,34 +57,53 @@ const addTodo = (value) => {
         </div>      
     `;
   todoTaskLists.append(listItem);
+  deleteItem(listItem);
+  updateItem(listItem);
+};
+
+function deleteItem(listItem) {
   listItem.querySelector(".fa-times").addEventListener("click", function () {
-    listItem.remove();
-    saveTodo();
-    showdeletemsg();
+    deleteTask.style.display = "block";
+    document.body.style.overflow = "hidden";
+    function yes() {
+      deleteTask.style.display = "none";
+      document.body.style.overflow = "auto";
+      listItem.remove();
+      saveTodo();
+      showdeletemsg();
+      deleteTask
+        .querySelectorAll("button")[0]
+        .removeEventListener("click", yes);
+      deleteTask.querySelectorAll("button")[1].removeEventListener("click", no);
+    }
+    function no() {
+      deleteTask.style.display = "none";
+      document.body.style.overflow = "auto";
+      deleteTask
+        .querySelectorAll("button")[0]
+        .removeEventListener("click", yes);
+      deleteTask.querySelectorAll("button")[1].removeEventListener("click", no);
+    }
+    deleteTask.querySelectorAll("button")[0].addEventListener("click", yes);
+    deleteTask.querySelectorAll("button")[1].addEventListener("click", no);
+    deleteTask.querySelector("i").addEventListener("click", function () {
+      deleteTask.style.display = "none";
+      document.body.style.overflow = "auto";
+    });
   });
+}
+
+function updateItem(listItem) {
   listItem.querySelector(".fa-pen").addEventListener("click", function () {
     document.body.style.overflow = "hidden";
     updateTask.style.display = "block";
     updateTask.querySelector("input").value =
       listItem.querySelector("p").innerHTML;
-    // updateTask
-    //   .querySelectorAll("button")[0]
-    //   .addEventListener("click", function () {
-    //     listItem.querySelector("p").innerHTML =
-    //       updateTask.querySelector("input").value;
-    //     showupdatemsg();
-    //     updateTask.style.display = "none";
-    //     document.body.style.overflow = "auto";
-    //   });
-    // updateTask
-    //   .querySelectorAll("button")[1]
-    //   .addEventListener("click", function () {
-    //     updateTask.style.display = "none";
-    //     document.body.style.overflow = "auto";
-    //   });
     function yes() {
       listItem.querySelector("p").innerHTML =
         updateTask.querySelector("input").value;
+      saveTodo();
+      showupdatemsg();
       updateTask.style.display = "none";
       document.body.style.overflow = "auto";
       updateTask
@@ -107,73 +126,7 @@ const addTodo = (value) => {
       document.body.style.overflow = "auto";
     });
   });
-  saveTodo();
-};
-
-// function deleteItem(listItem) {
-//   listItem.querySelector(".fa-times").addEventListener("click", function () {
-//     deleteTask.style.display = "block";
-//     document.body.style.overflow = "hidden";
-//     function yes() {
-//       deleteTask.style.display = "none";
-//       document.body.style.overflow = "auto";
-//       listItem.remove();
-//       toastMsg("Tasks is successfully deleted");
-//       deleteTask
-//         .querySelectorAll("button")[0]
-//         .removeEventListener("click", yes);
-//       deleteTask.querySelectorAll("button")[1].removeEventListener("click", no);
-//     }
-//     function no() {
-//       deleteTask.style.display = "none";
-//       document.body.style.overflow = "auto";
-//       deleteTask
-//         .querySelectorAll("button")[0]
-//         .removeEventListener("click", yes);
-//       deleteTask.querySelectorAll("button")[1].removeEventListener("click", no);
-//     }
-//     deleteTask.querySelectorAll("button")[0].addEventListener("click", yes);
-//     deleteTask.querySelectorAll("button")[1].addEventListener("click", no);
-//     deleteTask.querySelector("i").addEventListener("click", function () {
-//       deleteTask.style.display = "none";
-//       document.body.style.overflow = "auto";
-//     });
-//   });
-// }
-
-// function updateItem(listItem) {
-//   listItem.querySelector(".fa-pen").addEventListener("click", function () {
-//     document.body.style.overflow = "hidden";
-//     updateTask.style.display = "block";
-//     updateTask.querySelector("input").value =
-//       listItem.querySelector("p").innerHTML;
-//     function yes() {
-//       listItem.querySelector("p").innerHTML =
-//         updateTask.querySelector("input").value;
-//       toastMsg("Tasks is successfully updated");
-//       updateTask.style.display = "none";
-//       document.body.style.overflow = "auto";
-//       updateTask
-//         .querySelectorAll("button")[0]
-//         .removeEventListener("click", yes);
-//       updateTask.querySelectorAll("button")[1].removeEventListener("click", no);
-//     }
-//     function no() {
-//       updateTask.style.display = "none";
-//       document.body.style.overflow = "auto";
-//       updateTask
-//         .querySelectorAll("button")[0]
-//         .removeEventListener("click", yes);
-//       updateTask.querySelectorAll("button")[1].removeEventListener("click", no);
-//     }
-//     updateTask.querySelectorAll("button")[0].addEventListener("click", yes);
-//     updateTask.querySelectorAll("button")[1].addEventListener("click", no);
-//     updateTask.querySelector("i").addEventListener("click", function () {
-//       updateTask.style.display = "none";
-//       document.body.style.overflow = "auto";
-//     });
-//   });
-// }
+}
 
 const showaddmsg = () => {
   addToast.classList.add("show");
