@@ -9,6 +9,8 @@ const updateTask = document.getElementById("update-task");
 const addToast = document.getElementById("add-toast");
 const updateToast = document.getElementById("update-toast");
 const deleteToast = document.getElementById("delete-toast");
+const input = document.querySelector("#item");
+const deleteTask = document.querySelector("#delete-task");
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
